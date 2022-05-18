@@ -475,9 +475,15 @@ class Telephone(GiveMoney):
     """оплата телефона"""
 
     def telephone_pay(self, card, money: float, tel_number: str, bankomat_storage, single_t):
-        self.money_out(card, money, bankomat_storage, single_t, 'BYN')
-        self.copy_data()
+        value = card.get_balance_byn()
+        value2 = value-money
+        if value2 >= 0:
+            card.set_balance_byn(value2)
+        elif value2 < 0:
+            card.set_balance_byn(0)
 
+        self.copy_data()
+        tel_number=tel_number+'\n'
         from_card = open('newtelephone.txt', 'r')
         to_card = open('telephone.txt', 'w')
         k = from_card.readline()
@@ -490,8 +496,8 @@ class Telephone(GiveMoney):
                 to_card.write(telephone)
                 to_card.write(str(balance + money) + '\n')
             else:
-                to_card.write(from_card.readline())
-                to_card.write(from_card.readline())
+                to_card.write(telephone)
+                to_card.write(str(balance)+'\n')
         from_card.close()
         to_card.close()
 

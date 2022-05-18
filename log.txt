@@ -1838,3 +1838,127 @@ Status: Success
 Operation type: Пополнение счета телефона
 Status: Success
 
+11-05-2022  00:14:49
+Operation type: Выход из системы
+Status: Success
+
+17-05-2022  02:08:55
+Operation type: Ввод пин-код
+Status: Success
+
+17-05-2022  02:08:55
+Operation type: Вход в систему
+Status: Success
+
+17-05-2022  02:09:21
+Operation type: Данные банковской карты
+Status: Success
+
+17-05-2022  02:10:00
+Operation type: Выдача наличных
+Status: Success
+
+18-05-2022  21:08:56
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  21:08:56
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  21:15:43
+Operation type: Выдача наличных
+Status: Success
+
+18-05-2022  21:21:17
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  21:22:34
+Operation type: Выход из системы
+Status: Success
+
+18-05-2022  22:39:33
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  22:39:33
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  22:40:05
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  22:42:32
+Operation type: Выход из системы
+Status: Success
+
+18-05-2022  22:42:53
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  22:42:53
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  22:43:18
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  22:55:52
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  22:55:52
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  22:56:00
+Operation type: Выход из системы
+Status: Success
+
+18-05-2022  22:56:12
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  22:56:12
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  22:56:30
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  22:57:14
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  22:57:45
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  22:58:43
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  23:00:24
+Operation type: Выход из системы
+Status: Success
+
+18-05-2022  23:03:51
+Operation type: Ввод пин-код
+Status: Success
+
+18-05-2022  23:03:51
+Operation type: Вход в систему
+Status: Success
+
+18-05-2022  23:04:11
+Operation type: Пополнение счета телефона
+Status: Success
+
+18-05-2022  23:04:29
+Operation type: Выход из системы
+Status: Success
+
