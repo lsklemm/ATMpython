@@ -36,7 +36,7 @@ class CardCheck:
 #выдача деняк
 class GiveMoney:
     """выдача наличных"""
-    def money_out(self, card, money, bankomat_storage, single_t, currency):
+    def money_out(self, card, money, bankomat_storage, single_t, currency, gui):
         card.copy_data()
 
         try:
@@ -108,8 +108,9 @@ class GiveMoney:
                         from_card.close()
                         to_card.close()
                         # выдача чека
-                        c = CardCheck()
-                        c.chek('Выдача наличных')
+                        if gui == 0:
+                            c = CardCheck()
+                            c.chek('Выдача наличных')
 
             # ветка USD
             else:
@@ -176,8 +177,9 @@ class GiveMoney:
                         from_card.close()
                         to_card.close()
                         # выдача чека
-                        c = CardCheck()
-                        c.chek('Выдача наличных')
+                        if gui == 0:
+                            c = CardCheck()
+                            c.chek('Выдача наличных')
         except ValueError:
             print('\t----------Неверный код операции----------')
 
@@ -255,7 +257,7 @@ class ChangePin(MyException):
 #деньги на бочку!
 class GetMoney:
     """пополнение денежных средств"""
-    def money_in(self, card, money: int, bankomat_storage, single_t, currency):
+    def money_in(self, card, money: int, bankomat_storage, single_t, currency, gui):
         # ветка бунов
         if currency == 'BYN':
             new_money = float(card.get_balance_byn()) + money
@@ -306,8 +308,9 @@ class GetMoney:
             from_card.close()
             to_card.close()
             # выдача чека
-            c = CardCheck()
-            c.chek('Пополнение счета')
+            if gui == 0:
+                c = CardCheck()
+                c.chek('Пополнение счета')
         # ветка американ деньги
         elif currency == 'USD':
             new_money = float(card.get_balance_usd()) + money
@@ -359,8 +362,9 @@ class GetMoney:
             from_card.close()
             to_card.close()
             # выдача чека
-            c = CardCheck()
-            c.chek('Пополнение счета')
+            if gui == 0:
+                c = CardCheck()
+                c.chek('Пополнение счета')
 
 # валютные операции
 class Currency(CardCheck):
@@ -515,7 +519,7 @@ class Telephone(GiveMoney):
         new_card.close()
 
 class Currency_transactions:
-    def fromBUNtoUSD(self,card,value:float):
+    def fromBUNtoUSD(self,card,value:float, gui):
         card.copy_data()
         if value * 3.31 > float(card.get_balance_byn()) or value < 0:
             print('ERROR')
@@ -562,10 +566,11 @@ class Currency_transactions:
             to_card.close()
 
             # выдача чека
-            c = CardCheck()
-            c.chek('Валютные переводы')
+            if gui == 0:
+                c = CardCheck()
+                c.chek('Валютные переводы')
 
-    def fromUSDtoBUN(self, card, value: float):
+    def fromUSDtoBUN(self, card, value: float, gui):
         card.copy_data()
         if value / 3.31 > card.get_balance_usd() or value < 0:
             print('ERROR')
@@ -612,5 +617,6 @@ class Currency_transactions:
             to_card.close()
 
             # выдача чека
-            c = CardCheck()
-            c.chek('Валютные переводы')
+            if gui == 0:
+                c = CardCheck()
+                c.chek('Валютные переводы')

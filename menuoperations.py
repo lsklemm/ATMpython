@@ -57,7 +57,7 @@ class MenuOperations(Bankomat):
                             money=typer.prompt("Выберите нужную сумму: ")
                             if money.isdigit():
                                 give_money = GiveMoney()
-                                give_money.money_out(card, int(money), storage, single_t, 'BYN')
+                                give_money.money_out(card, int(money), storage, single_t, 'BYN', 0)
                             else:
                                 print('\n----------Неверный формат ввода данных-----------\n')
 
@@ -69,7 +69,7 @@ class MenuOperations(Bankomat):
                             money=typer.prompt("Выберите нужную сумму: ")
                             if money.isdigit():
                                 give_money = GiveMoney()
-                                give_money.money_out(card, int(money), storage, single_t, 'USD')
+                                give_money.money_out(card, int(money), storage, single_t, 'USD', 0)
                             else:
                                 print('\n----------Неверный формат ввода данных-----------\n')
 
@@ -114,13 +114,13 @@ class MenuOperations(Bankomat):
                     if money.isdigit():
                         if choose_money.upper() == "BYN":
                             get_money = GetMoney()
-                            get_money.money_in(card, int(money), storage, single_t, 'BYN')
+                            get_money.money_in(card, int(money), storage, single_t, 'BYN', 0)
                             with typer.progressbar(range(100)) as progress:
                                 for value in progress:
                                     time.sleep(0.01)
                         elif choose_money.upper() == "USD":
                             get_money = GetMoney()
-                            get_money.money_in(card, int(money), storage, single_t, 'USD')
+                            get_money.money_in(card, int(money), storage, single_t, 'USD', 0)
                     else:
                         print('\t----------Неверный формат ввода данных-----------\n')
 
@@ -145,14 +145,14 @@ class MenuOperations(Bankomat):
                     if account.upper() == "BUN":
                         money=float(input('Введите сумму: '))
                         transaction=Currency_transactions()
-                        transaction.fromUSDtoBUN(card,money)
+                        transaction.fromUSDtoBUN(card,money, 0)
                         with typer.progressbar(range(100)) as progress:
                             for value in progress:
                                 time.sleep(0.01)
                     elif account.upper() == "USD":
                         money = float(input('Введите сумму: '))
                         transaction = Currency_transactions()
-                        transaction.fromBUNtoUSD(card, money)
+                        transaction.fromBUNtoUSD(card, money, 0)
 
                     else:
                         print('----------Неверный код операции----------\n\n')
