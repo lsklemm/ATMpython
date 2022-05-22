@@ -2099,3 +2099,19 @@ Status: Success
 Operation type: Пополнение счета телефона
 Status: Success
 
+22-05-2022  21:13:00
+Operation type: Выдача наличных
+Status: Success
+
+22-05-2022  21:15:09
+Operation type: Выдача наличных
+Status: Success
+
+22-05-2022  21:16:59
+Operation type: Выдача наличных
+Status: Success
+
+22-05-2022  21:27:26
+Operation type: Выдача наличных
+Status: Success
+

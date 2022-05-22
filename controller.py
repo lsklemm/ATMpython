@@ -1,4 +1,4 @@
-from interface import WelcomeScreen, MoneyOperations
+
 from kivy.uix.screenmanager import ScreenManager
 
 import re

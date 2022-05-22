@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager
 
 from controller import Controller
 
-from interface import WelcomeScreen, MenuScreen, MoneyOperations
+from interface import WelcomeScreen, PinScreen, MenuScreen, MoneyOperations, MoneyOutScreen, MoneyOutChoiceScreen, ContinueScreen, CheckScreen
 
 # kv = Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))
 
@@ -20,8 +20,13 @@ class MyApp(MDApp):
         self.controller = Controller()
         self.sm = Manager()
         self.sm.add_widget(WelcomeScreen(name='welcome_screen', controller = self.controller))
+        self.sm.add_widget(PinScreen(name='pin_screen', controller=self.controller))
         self.sm.add_widget(MenuScreen(name='menu_screen'))
+        self.sm.add_widget(MoneyOutChoiceScreen(name = 'money_out_choice_screen', controller=self.controller))
+        self.sm.add_widget(MoneyOutScreen(name='money_out_screen', controller=self.controller))
         self.sm.add_widget(MoneyOperations(name='operations_screen'))
+        self.sm.add_widget(ContinueScreen(name='continue_screen'))
+        self.sm.add_widget(CheckScreen(name='check_screen'))
 
 
 

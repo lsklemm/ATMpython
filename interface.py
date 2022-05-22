@@ -17,13 +17,8 @@ class WelcomeScreen(MDScreen):
         self.pin_count = 0
 
 
-    def set_pin(self, pin):
-        self.controller.set_pin(pin)
-    def set_money(self, money):
-        if self.controller.set_money(money) == False:
-            self.ids.label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
-        else:
-            self.ids.label.text = '[color=#FF9900]okeyy[/color]'
+
+
 
     def set_phone_number(self, phone):
         self.controller.set_phone_number(phone)
@@ -37,20 +32,11 @@ class WelcomeScreen(MDScreen):
     def choose_card(self, number):
         self.controller.choose_card(number)
 
-    def check_pin(self):
-        if self.controller.check_pin():
-            self.ids.label.text = '[color=#FF88FF]pin is correct[/color]'
-        else:
-            self.ids.label.text = '[color=#FF88FF]try one more time[/color]'
-            self.pin_count += 1
-        if self.pin_count == 3:
-            self.ids.label.text = '[color=#FF88FF]bad[/color]'
-            self.pin_count = 0
 
 
 
-    def money_out(self):
-        self.controller.money_out()
+
+
 
     def money_in(self):
         self.controller.money_in()
@@ -61,13 +47,66 @@ class WelcomeScreen(MDScreen):
     def fromBUNtoUSD(self):
         self.controller.fromBUNtoUSD()
 
+
+class PinScreen(MDScreen):
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+        self.pin_count = 0
+
+
+
+
+    def set_pin(self, pin):
+        self.controller.set_pin(pin)
+
     def change_pin(self):
         self.controller.change_pin()
+
+    def check_pin(self):
+        if self.controller.check_pin():
+            self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
+        else:
+            self.ids.pin_label.text = '[color=#FF88FF]try one more time[/color]'
+            self.pin_count += 1
+        if self.pin_count == 3:
+            self.ids.pin_label.text = '[color=#FF88FF]bad[/color]'
+            self.pin_count = 0
 
 
 class MenuScreen(MDScreen):
     pass
 
+class MoneyOutChoiceScreen(MDScreen):
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+
+    def set_money(self, money):
+        if self.controller.set_money(money) == False:
+            self.ids.money_out_label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
+        else:
+            self.ids.money_out_label.text = '[color=#FF9900]okeyy[/color]'
+            self.controller.money_out()
+
+    def money_out(self):
+        self.controller.money_out()
+
+
+class MoneyOutScreen(MDScreen):
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+
+
+    def set_money(self, money):
+        if self.controller.set_money(money) == False:
+            self.ids.money_out_label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
+        else:
+            self.ids.money_out_label.text = '[color=#FF9900]okeyy[/color]'
+
+    def money_out(self):
+        self.controller.money_out()
 
 
 
@@ -77,7 +116,11 @@ class MoneyOperations(MDScreen):
 
 
 
+class ContinueScreen(MDScreen):
+    pass
 
+class CheckScreen(MDScreen):
+    pass
 
 
 

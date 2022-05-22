@@ -5,58 +5,171 @@
         adaptive_size: True
         Label:
             id: label
-            text: '[color=#FF9977]введите пин-код[/color]'
+            text: '[color=#FF9977]Выберите карточку[/color]'
             markup: True
-        GridLayout:
-            cols:3
-            TextInput:
-                hint_text: 'ПИН-КОД'
-                on_text: root.set_pin(self.text)
-                input_filter: 'int'
 
-            TextInput:
-                hint_text: 'money'
-                on_text: root.set_money(self.text)
-                input_filter: 'int'
+        Button:
+            text: 'Alesya Rabushka'
+            on_press: root.choose_card(1)
+            on_release: app.root.change_screen('pin_screen')
+
+        Button:
+            text: 'Alena Sklema'
+            on_press: root.choose_card(2)
+            on_release: app.root.change_screen('pin_screen')
+
+        Button:
+            text: 'Aleksey Smelov'
+            on_press: root.choose_card(3)
+            on_release: app.root.change_screen('pin_screen')
+
+        GridLayout:
+            cols:1
+
+
 
             TextInput:
                 hint_text: '375__ ___ __ __'
                 on_text: root.set_phone_number(self.text)
 
+
+
+<PinScreen>
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+
+        Label:
+            id: pin_label
+            text: '[color=#FF9966]Введите пин-код[/color]'
+            markup: True
+
+        TextInput:
+            hint_text: 'ПИН-КОД'
+            on_text: root.set_pin(self.text)
+            input_filter: 'int'
+
         Button:
-            text: 'choose card'
-            on_press: root.choose_card(1)
-        Button:
-            text: 'check pin'
+            text: 'ВВОД'
             on_press: root.check_pin()
-        Button:
-            text: 'money out'
-            on_press: root.money_out()
-        Button:
-            text: 'money in'
-            on_press: root.money_in()
 
         Button:
-            text: 'telephone payment'
-            on_press: root.telephone_payment()
-        Button:
-            text: 'transaction to USD'
-            on_press: root.fromBUNtoUSD()
-        Button:
-            text: 'transaction to BYN'
-            on_press: root.fromUSDtoBUN()
-        Button:
-            text: 'change pin'
-            on_press: root.change_pin()
-        Button:
-            text: 'change pin'
-            on_press: app.root.change_screen('operations_screen')
+            text: 'next'
+            on_press: app.root.change_screen('menu_screen')
 
 
-<MoneyOperations>
+
+
+<MenuScreen>
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
 
         Button:
-            text: 'hi'
+            text: 'money out'
+            on_press: app.root.change_screen('money_out_choice_screen')
+        Button:
+            text: 'money in'
+            on_press: app.root.change_screen('money_in')
+
+        Button:
+            text: 'telephone payment'
+            on_press: app.root.change_screen('telephone_payment')
+        Button:
+            text: 'transaction to USD'
+            on_press: app.root.change_screen('BYNtoUSD')
+        Button:
+            text: 'transaction to BYN'
+            on_press: app.root.change_screen('USDtoBYN')
+
+<MoneyOutChoiceScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        adaptive_size: True
+
+        Label:
+            id: money_out_label
+            text:'[color=#FF99966]Выберите сумму выдачи[/color]'
+
+        Button:
+            text: '5'
+            on_press: root.set_money(5)
+            on_release: app.root.change_screen('check_screen')
+
+        Button:
+            text: '10'
+            on_press: root.set_money(10)
+            on_release: app.root.change_screen('check_screen')
+#            on_release: root.money_out()
+
+        Button:
+            text: '20'
+            on_press: root.set_money(20)
+            on_release: app.root.change_screen('check_screen')
+#            on_release: root.money_out()
+
+        Button:
+            text: '50'
+            on_press: root.set_money(50)
+            on_release: app.root.change_screen('check_screen')
+#            on_release: root.money_out()
+
+        Button:
+            text: '100'
+            on_press: root.set_money(100)
+            on_release: app.root.change_screen('check_screen')
+#            on_release: root.money_out()
+
+        Button:
+            text: 'Другая сумма'
+            on_press: app.root.change_screen('money_out_screen')
+
+
+<MoneyOutScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        adaptive_size: True
+
+        Label:
+            id: money_out_label
+            text: '[color=#FF9966]Введите сумму выдачи[/color]'
+
+        TextInput:
+            hint_text: 'money'
+            on_text: root.set_money(self.text)
+            input_filter: 'int'
+
+        Button:
+            text: 'продолжить'
+            on_press: root.money_out()
+            on_release: app.root.change_screen('check_screen')
+
+<CheckScreen>
+    BoxLayout:
+        orientation:'vertical'
+
+        Label:
+            text: '[color=#FF9966]Хатишь свой чекъ?[/color]'
+            markup: True
+        Button:
+            text: 'хатишь'
+            on_press: app.root.change_screen('continue_screen')
+
+        Button:
+            text:'не хатишь'
+            on_press: app.root.change_screen('continue_screen')
+
+<ContinueScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text:'[color=#FF9966]Желаете продолжить?[/color]'
+
+        Button:
+            text: 'Продолжить'
+            on_press: app.root.change_screen('menu_screen')
+
+        Button:
+            text: 'Завершить сеанс'
+            on_press: app.root.change_screen('exit_screen')
