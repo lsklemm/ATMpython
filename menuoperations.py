@@ -81,9 +81,9 @@ class MenuOperations(Bankomat):
 
             # оплата телефона
             elif operation_name == "phone_payment":
-                print('+375 44 730 81 28\n+375 33 895 12 04\n+375 25 234 10 23')
+                print('+375447308128\n+375338951204\n+375252341023')
                 tel = typer.prompt("Выберите номер телефона: ")
-                if tel == "+375 44 730 81 28" or tel == "+375 33 895 12 04" or tel == "+375 25 234 10 23":
+                if tel == "+375447308128" or tel == "+375338951204" or tel == "+375252341023":
                     money = int(input("Введите сумму платежа: "))
                     with typer.progressbar(range(100)) as progress:
                         for value in progress:

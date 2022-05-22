@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.textinput import TextInput
 
 from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty
 
 
@@ -15,6 +16,7 @@ class WelcomeScreen(MDScreen):
         self.controller = controller
         self.pin_count = 0
 
+
     def set_pin(self, pin):
         self.controller.set_pin(pin)
     def set_money(self, money):
@@ -22,6 +24,9 @@ class WelcomeScreen(MDScreen):
             self.ids.label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
         else:
             self.ids.label.text = '[color=#FF9900]okeyy[/color]'
+
+    def set_phone_number(self, phone):
+        self.controller.set_phone_number(phone)
 
     def change_widget_text(self, widget, text):
         self.ids.widget.text = text
@@ -59,9 +64,40 @@ class WelcomeScreen(MDScreen):
     def change_pin(self):
         self.controller.change_pin()
 
+
+class MenuScreen(MDScreen):
+    pass
+
+
+
+
 class MoneyOperations(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+
+
+
+
+
+
+
+
+
+
+
+class PhoneInput(TextInput):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.phone = ''
+
+    def insert_text(self, string, from_undo = False):
+        new_text = self.text + string
+        if new_text != '':
+            if len(new_text) < 17:
+                TextInput.insert_text(self, string, from_undo = from_undo)
+            elif len(new_text) == 17:
+                self.phone = new_text
 
 
 
