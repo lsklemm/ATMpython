@@ -11,9 +11,10 @@ from kivy.properties import ObjectProperty
 
 class WelcomeScreen(MDScreen):
     controller = ObjectProperty()
-    def __init__(self, controller, **kw):
+    def __init__(self, controller, balance, **kw):
         super().__init__(**kw)
         self.controller = controller
+        self.balance = balance
         self.pin_count = 0
 
 
@@ -30,7 +31,7 @@ class WelcomeScreen(MDScreen):
         self.controller.set_screen('card operations')
 
     def choose_card(self, number):
-        self.controller.choose_card(number)
+        self.balance.card = self.controller.choose_card(number)
 
 
 
@@ -38,8 +39,7 @@ class WelcomeScreen(MDScreen):
 
 
 
-    def money_in(self):
-        self.controller.money_in()
+
 
     def telephone_payment(self):
         self.controller.telephone_payment('+375 25 234 10 23',5)
@@ -53,8 +53,6 @@ class PinScreen(MDScreen):
         super().__init__(**kwargs)
         self.controller = controller
         self.pin_count = 0
-
-
 
 
     def set_pin(self, pin):
@@ -110,9 +108,26 @@ class MoneyOutScreen(MDScreen):
 
 
 
+class MoneyInScreen(MDScreen):
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+
+    def set_money(self, money):
+        if self.controller.set_money(money) == False:
+            self.ids.money_in_label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
+        else:
+            self.ids.money_in_label.text = '[color=#FF9900]okeyy[/color]'
+
+    def money_in(self):
+        self.controller.money_in()
+
+
 class MoneyOperations(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+
 
 
 
@@ -123,6 +138,19 @@ class CheckScreen(MDScreen):
     pass
 
 
+class BalanceScreen(MDScreen):
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+        self.card = 0
+
+
+        # self.ids.balance_byn_label.text = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
+        # self.ids.balance_usd_label.text = '[color=#FF9966]' + self.controller.get_card_balance_usd() + '[/color]'
+
+    def byn(self):
+        self.byn = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
+        return '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
 
 
 

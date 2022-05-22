@@ -39,6 +39,11 @@ class Controller:
         self.phone_number = phone
 
 
+    def get_card_balance_byn(self):
+        return str(self.card.get_balance_byn)
+
+    def get_card_balance_usd(self):
+        return str(self.card.get_balance_usd)
 
     def check_pin(self):
         if int(self.pin) == int(self.card.get_pin()):
@@ -65,8 +70,9 @@ class Controller:
         chosen = Chosen()
         if chosen.choose_card(number):
             self.card = Card(chosen.get_chosen())
+            return self.card
             # card = Card(chosen.get_chosen())
-            # card.get_balance_byn()
+            # card.get_chosen()
 
 
     def money_out(self):

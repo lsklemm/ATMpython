@@ -13,6 +13,7 @@
             on_press: root.choose_card(1)
             on_release: app.root.change_screen('pin_screen')
 
+
         Button:
             text: 'Alena Sklema'
             on_press: root.choose_card(2)
@@ -65,12 +66,17 @@
         orientation: "vertical"
         adaptive_size: True
 
+
+        Button:
+            text: 'balance'
+            on_press: app.root.change_screen('balance_screen')
+
         Button:
             text: 'money out'
             on_press: app.root.change_screen('money_out_choice_screen')
         Button:
             text: 'money in'
-            on_press: app.root.change_screen('money_in')
+            on_press: app.root.change_screen('money_in_screen')
 
         Button:
             text: 'telephone payment'
@@ -125,6 +131,23 @@
             on_press: app.root.change_screen('money_out_screen')
 
 
+<BalanceScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        adaptive_size: True
+
+        Label:
+            id: balance_byn_label
+#            text: root.byn
+
+        Label:
+            id: balance_usd_label
+
+        Button:
+            text:'продолжить'
+            on_press: app.root.change_screen('continue_screen')
+
+
 <MoneyOutScreen>
     BoxLayout:
         orientation: 'vertical'
@@ -142,6 +165,27 @@
         Button:
             text: 'продолжить'
             on_press: root.money_out()
+            on_release: app.root.change_screen('check_screen')
+
+
+
+<MoneyInScreen>
+    BoxLayout:
+        orientation:'vertical'
+
+        Label:
+            id: money_in_label
+            text: '[color=#FF9966]Введите сумму[/color]'
+            markup: True
+
+        TextInput:
+            hint_text: 'money'
+            on_text: root.set_money(self.text)
+            input_filter: 'int'
+
+        Button:
+            text: 'оппа сюда нада'
+            on_press: root.money_in()
             on_release: app.root.change_screen('check_screen')
 
 <CheckScreen>
@@ -165,6 +209,7 @@
 
         Label:
             text:'[color=#FF9966]Желаете продолжить?[/color]'
+            markup:  True
 
         Button:
             text: 'Продолжить'
