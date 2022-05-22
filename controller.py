@@ -1,6 +1,8 @@
 from interface import WelcomeScreen, MoneyOperations
 from kivy.uix.screenmanager import ScreenManager
 
+import re
+
 
 from mainscreen import MainScreen
 from card import Card
@@ -26,9 +28,14 @@ class Controller:
 
         self.pin = 0
         self.card = 0
+        self.money = 0
 
     def set_pin(self, pin):
         self.pin = pin
+    def set_money(self, money):
+        self.money = money
+
+
 
     def check_pin(self):
         if int(self.pin) == int(self.card.get_pin()):
@@ -43,17 +50,19 @@ class Controller:
             # card.get_balance_byn()
 
 
-    def money_out(self, money):
+    def money_out(self):
         give_money = GiveMoney()
         print(self.card.get_balance_byn())
-        give_money.money_out(self.card, int(money), self.storage, self.single_t, 'BYN', 1)
+        give_money.money_out(self.card, int(self.money), self.storage, self.single_t, 'BYN', 1)
         print(self.card.get_balance_byn())
 
-    def money_in(self, money):
+    def money_in(self):
         print(self.card.get_balance_byn())
         get_money = GetMoney()
-        get_money.money_in(self.card, int(money), self.storage, self.single_t, 'BYN', 1)
+        get_money.money_in(self.card, int(self.money), self.storage, self.single_t, 'BYN', 1)
+
         print(self.card.get_balance_byn())
+
 
     def telephone_payment(self, telephone_number, money):
         print(self.card.get_balance_byn())
@@ -61,19 +70,20 @@ class Controller:
         telephone.telephone_pay(self.card, int(money), telephone_number, self.storage, self.single_t)
         print(self.card.get_balance_byn())
 
-    def fromBUNtoUSD(self, money):
+    def fromBUNtoUSD(self):
         print(self.card.get_balance_byn())
         transaction = Currency_transactions()
-        transaction.fromBUNtoUSD(self.card, money, 1)
+        transaction.fromBUNtoUSD(self.card, self.money, 1)
         print(self.card.get_balance_byn())
 
-    def fromUSDtoBUN(self, money):
+    def fromUSDtoBUN(self):
         print(self.card.get_balance_byn())
         transaction = Currency_transactions()
-        transaction.fromUSDtoBUN(self.card, money, 1)
+        transaction.fromUSDtoBUN(self.card, self.money, 1)
         print(self.card.get_balance_byn())
 
-
+    def change_pin(self):
+        pass
 
 
 

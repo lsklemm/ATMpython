@@ -1,6 +1,7 @@
 import os
 from kivy.lang import Builder
 
+from kivy.uix.textinput import TextInput
 
 from kivymd.uix.screen import MDScreen
 from kivy.properties import ObjectProperty
@@ -16,6 +17,11 @@ class WelcomeScreen(MDScreen):
 
     def set_pin(self, pin):
         self.controller.set_pin(pin)
+    def set_money(self, money):
+        if self.controller.set_money(money) == False:
+            self.ids.label.text = '[color=#FF9900]the money input is not what i wanted[/color]'
+        else:
+            self.ids.label.text = '[color=#FF9900]okeyy[/color]'
 
     def change_widget_text(self, widget, text):
         self.ids.widget.text = text
@@ -28,7 +34,7 @@ class WelcomeScreen(MDScreen):
 
     def check_pin(self):
         if self.controller.check_pin():
-            self.ids.label.text = '[color=#FF88FF]eq[/color]'
+            self.ids.label.text = '[color=#FF88FF]pin is correct[/color]'
         else:
             self.ids.label.text = '[color=#FF88FF]try one more time[/color]'
             self.pin_count += 1
@@ -39,16 +45,19 @@ class WelcomeScreen(MDScreen):
 
 
     def money_out(self):
-        self.controller.money_out(10)
+        self.controller.money_out()
 
     def money_in(self):
-        self.controller.money_in(10)
+        self.controller.money_in()
 
     def telephone_payment(self):
         self.controller.telephone_payment('+375 25 234 10 23',5)
 
     def fromBUNtoUSD(self):
-        self.controller.fromBUNtoUSD(5)
+        self.controller.fromBUNtoUSD()
+
+    def change_pin(self):
+        self.controller.change_pin()
 
 class MoneyOperations(MDScreen):
     def __init__(self, **kwargs):
