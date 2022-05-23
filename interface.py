@@ -171,6 +171,17 @@ class PhoneInput(TextInput):
                 self.phone = new_text
 
 
+class TelephonePaymentScreen(MDScreen):
+    number = ObjectProperty()
+    money = ObjectProperty()
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
 
+
+    def phone_payment(self):
+        number = self.number.text
+        money = self.money.text
+        self.controller.telephone_payment(number,money)
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))

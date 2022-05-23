@@ -40,10 +40,10 @@ class Controller:
 
 
     def get_card_balance_byn(self):
-        return str(self.card.get_balance_byn)
+        return str(self.card.get_balance_byn())
 
     def get_card_balance_usd(self):
-        return str(self.card.get_balance_usd)
+        return str(self.card.get_balance_usd())
 
     def check_pin(self):
         if int(self.pin) == int(self.card.get_pin()):
@@ -89,11 +89,12 @@ class Controller:
         print(self.card.get_balance_byn())
 
 
-    def telephone_payment(self, telephone_number, money):
+    def telephone_payment(self,number,money):
+
         print(self.card.get_balance_byn())
         telephone = Telephone()
-        if self.check_phone_number():
-            telephone.telephone_pay(self.card, int(money), self.phone_number, self.storage, self.single_t)
+        #if self.check_phone_number():
+        telephone.telephone_pay(self.card, int(money), number, self.storage, self.single_t)
         print(self.card.get_balance_byn())
 
     def fromBUNtoUSD(self):

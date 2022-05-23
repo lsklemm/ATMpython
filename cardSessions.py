@@ -478,7 +478,7 @@ class Currency(CardCheck):
 class Telephone(GiveMoney):
     """оплата телефона"""
 
-    def telephone_pay(self, card, money: float, tel_number: str, bankomat_storage, single_t):
+    def telephone_pay(self, card, money: int, tel_number: str, bankomat_storage, single_t):
         value = card.get_balance_byn()
         value2 = value-money
         if value2 >= 0:

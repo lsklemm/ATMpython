@@ -218,3 +218,23 @@
         Button:
             text: 'Завершить сеанс'
             on_press: app.root.change_screen('exit_screen')
+
+<TelephonePaymentScreen>
+    number:number
+    money:money
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: check_label
+            markup: True
+            text: 'Введите номер и сумму'
+        TextInput:
+            id: number
+            multiline:False
+        TextInput:
+            id: money
+            multiline:False
+        Button:
+            text: 'Продолжить'
+            on_press: root.phone_payment()
+            on_release: app.root.change_screen('check_screen')
