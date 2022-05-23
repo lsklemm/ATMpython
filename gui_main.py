@@ -3,6 +3,7 @@ from kivy.lang import Builder
 
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import NoTransition
 
 from controller import Controller
 
@@ -18,7 +19,7 @@ class MyApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.controller = Controller()
-        self.sm = Manager()
+        self.sm = Manager(transition=NoTransition())
         bs = BalanceScreen(name='balance_screen', controller=self.controller)
         self.sm.add_widget(WelcomeScreen(name='welcome_screen', controller = self.controller, balance=bs))
         self.sm.add_widget(bs)
