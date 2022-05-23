@@ -64,12 +64,17 @@ class PinScreen(MDScreen):
     def check_pin(self):
         if self.controller.check_pin():
             self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
+            return True
         else:
             self.ids.pin_label.text = '[color=#FF88FF]try one more time[/color]'
             self.pin_count += 1
         if self.pin_count == 3:
             self.ids.pin_label.text = '[color=#FF88FF]bad[/color]'
             self.pin_count = 0
+        return False
+
+    def clean_input(self):
+        self.ids.pin_input.text = ''
 
 
 class MenuScreen(MDScreen):

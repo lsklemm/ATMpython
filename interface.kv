@@ -46,18 +46,14 @@
             markup: True
 
         TextInput:
+            id: pin_input
             hint_text: 'ПИН-КОД'
             on_text: root.set_pin(self.text)
             input_filter: 'int'
 
         Button:
             text: 'ВВОД'
-            on_press: root.check_pin()
-
-        Button:
-            text: 'next'
-            on_press: app.root.change_screen('menu_screen')
-
+            on_press:if root.check_pin() == True: app.root.change_screen('menu_screen')
 
 
 
@@ -138,7 +134,7 @@
 
         Label:
             id: balance_byn_label
-#            text: root.byn
+#            text: root.byn()
 
         Label:
             id: balance_usd_label
@@ -213,7 +209,7 @@
 
         Button:
             text: 'Продолжить'
-            on_press: app.root.change_screen('menu_screen')
+            on_press: app.root.change_screen('pin_screen')
 
         Button:
             text: 'Завершить сеанс'
