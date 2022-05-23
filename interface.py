@@ -183,6 +183,19 @@ class PhoneInput(TextInput):
             elif len(new_text) == 17:
                 self.phone = new_text
 
+class PinInput(TextInput):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.pin = ''
+
+    def insert_text(self, string, from_undo = False):
+        new_text = self.text + string
+        if new_text != '':
+            if len(new_text) <= 4:
+                TextInput.insert_text(self, string, from_undo = from_undo)
+            # elif len(new_text) == 4:
+            #     self.pin = new_text
+
 
 class WarningScreen(MDScreen):
     pass
