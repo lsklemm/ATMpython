@@ -64,6 +64,7 @@ class PinScreen(MDScreen):
     def check_pin(self):
         if self.controller.check_pin():
             self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
+            self.clean_input()
             return True
         else:
             self.ids.pin_label.text = '[color=#FF88FF]try one more time[/color]'
