@@ -210,6 +210,7 @@
             text: 'Завершить сеанс'
             on_press: app.root.change_screen('exit_screen')
 
+
 <WarningScreen>
     BoxLayout:
         orientation: 'vertical'
@@ -217,3 +218,15 @@
         Label:
             text: '[color=#FF9966]Задерживаем карточку[/color]'
             markup: True
+
+
+<ExitScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: '[color=#FF9966]Заберите карточку[/color]'
+            markup: True
+        Button:
+            text: 'exit'
+            on_press: app.get_running_app().stop()

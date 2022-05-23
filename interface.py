@@ -200,5 +200,8 @@ class PinInput(TextInput):
 class WarningScreen(MDScreen):
     pass
 
+class ExitScreen(MDScreen):
+    pass
+
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))
