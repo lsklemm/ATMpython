@@ -19,7 +19,8 @@ class Controller:
         # self.main_screen = WelcomeScreen(controller=self)
         # self.money_operations = MoneyOperations()
         # self.current_screen = self.main_screen
-
+        self.balance_screen = ''
+        self.death_screen_value = 0
 
         self.single_t = Singleton()
         self.storage = Bankomat()
@@ -30,6 +31,7 @@ class Controller:
         self.card = 0
         self.money = 0
         self.phone_number = ''
+        self.last_operation = ''
 
     def set_pin(self, pin):
         self.pin = pin
@@ -37,6 +39,8 @@ class Controller:
         self.money = money
     def set_phone_number(self, phone):
         self.phone_number = phone
+    def set_last_operation(self, operation):
+        self.last_operation = operation
 
 
     def get_card_balance_byn(self):
@@ -70,22 +74,24 @@ class Controller:
         chosen = Chosen()
         if chosen.choose_card(number):
             self.card = Card(chosen.get_chosen())
-            return self.card
+
+            self.balance_screen.set_balance(self.get_card_balance_byn(), self.get_card_balance_usd())
             # card = Card(chosen.get_chosen())
-            # card.get_chosen()
+            # card.get_balance_byn()
 
 
     def money_out(self):
         give_money = GiveMoney()
         print(self.card.get_balance_byn())
         give_money.money_out(self.card, int(self.money), self.storage, self.single_t, 'BYN', 1)
+        self.last_operation = 'Выдача наличных'
         print(self.card.get_balance_byn())
 
     def money_in(self):
         print(self.card.get_balance_byn())
         get_money = GetMoney()
         get_money.money_in(self.card, int(self.money), self.storage, self.single_t, 'BYN', 1)
-
+        self.last_operation = 'Пополнение средств'
         print(self.card.get_balance_byn())
 
 
@@ -93,6 +99,9 @@ class Controller:
 
         print(self.card.get_balance_byn())
         telephone = Telephone()
+        if self.check_phone_number():
+            telephone.telephone_pay(self.card, int(money), self.phone_number, self.storage, self.single_t)
+            self.last_operation = 'Пополнение средств телефона'
         #if self.check_phone_number():
         telephone.telephone_pay(self.card, int(money), number, self.storage, self.single_t)
         print(self.card.get_balance_byn())

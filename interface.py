@@ -1,11 +1,12 @@
 import os
-from kivy.lang import Builder
+from datetime import datetime
 
+from kivy.lang import Builder
 from kivy.uix.textinput import TextInput
+from kivy.properties import ObjectProperty
 
 from kivymd.uix.screen import MDScreen
-from kivy.uix.screenmanager import Screen
-from kivy.properties import ObjectProperty
+
 
 
 
@@ -16,6 +17,7 @@ class WelcomeScreen(MDScreen):
         self.controller = controller
         self.balance = balance
         self.pin_count = 0
+        self.death_screen_value = self.controller.death_screen_value
 
 
 
@@ -54,6 +56,8 @@ class PinScreen(MDScreen):
         self.controller = controller
         self.pin_count = 0
 
+        self.not_correct = False
+
 
     def set_pin(self, pin):
         self.controller.set_pin(pin)
@@ -64,12 +68,23 @@ class PinScreen(MDScreen):
     def check_pin(self):
         if self.controller.check_pin():
             self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
+            self.clean_input()
+            return 1
         else:
-            self.ids.pin_label.text = '[color=#FF88FF]try one more time[/color]'
+            self.ids.pin_label.text = '[color=#FF88FF]Неверный пин-код!\nПовторите попытку[/color]'
             self.pin_count += 1
+
         if self.pin_count == 3:
             self.ids.pin_label.text = '[color=#FF88FF]bad[/color]'
             self.pin_count = 0
+            self.not_correct = True
+            return 2
+
+
+
+
+    def clean_input(self):
+        self.ids.pin_input.text = ''
 
 
 class MenuScreen(MDScreen):
@@ -135,22 +150,43 @@ class ContinueScreen(MDScreen):
     pass
 
 class CheckScreen(MDScreen):
-    pass
-
-
-class BalanceScreen(MDScreen):
+    """
+    Check screen
+    """
     def __init__(self, controller, **kwargs):
         super().__init__(**kwargs)
         self.controller = controller
-        self.card = 0
+
+    def show_check(self):
+        check = ''
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+        check += '[color=#FF9966]                     ЧЕК[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+        date = datetime.now()
+        check += '[color=#FF9966]Date: ' + date.strftime('%d-%m-%Y') + '[/color]\n'
+        check += '[color=#FF9966]Time: ' + date.strftime('%H:%M:%S') +'[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+
+        check += '[color=#FF9966]Operation: ' + self.controller.last_operation + '[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+
+        self.ids.check_label.text = check
 
 
-        # self.ids.balance_byn_label.text = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
-        # self.ids.balance_usd_label.text = '[color=#FF9966]' + self.controller.get_card_balance_usd() + '[/color]'
 
-    def byn(self):
-        self.byn = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
-        return '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
+class BalanceScreen(MDScreen):
+    """
+    Card balance screen
+    """
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+
+
+    def set_balance(self, byn, usd):
+        print(byn, usd)
+        self.ids.balance_byn_label.text = '[color=#FF9966]' + byn + '[/color]'
+        self.ids.balance_usd_label.text = '[color=#FF9966]' + usd + '[/color]'
 
 
 
@@ -177,6 +213,38 @@ class TelephonePaymentScreen(MDScreen):
     def __init__(self, controller, **kwargs):
         super().__init__(**kwargs)
         self.controller = controller
+
+class PinInput(TextInput):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.pin = ''
+
+    def insert_text(self, string, from_undo = False):
+        new_text = self.text + string
+        if new_text != '':
+            if len(new_text) <= 4:
+                TextInput.insert_text(self, string, from_undo = from_undo)
+            # elif len(new_text) == 4:
+            #     self.pin = new_text
+
+
+class CheckChoiceScreen(MDScreen):
+    def __init__(self, check_screen, **kw):
+        super().__init__(**kw)
+        self.check_screen = check_screen
+
+    def check(self):
+        self.check_screen.show_check()
+
+
+class DeathScreen(MDScreen):
+    pass
+
+class WarningScreen(MDScreen):
+    pass
+
+class ExitScreen(MDScreen):
+    pass
 
 
     def phone_payment(self):

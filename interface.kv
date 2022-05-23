@@ -238,3 +238,33 @@
             text: 'Продолжить'
             on_press: root.phone_payment()
             on_release: app.root.change_screen('check_screen')
+
+
+
+<WarningScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: '[color=#FF9966]Задерживаем карточку[/color]'
+            markup: True
+
+<DeathScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: '[color=#FF9966]Это экран смерти\nперезапусти прогу[/color]'
+            markup: True
+
+
+<ExitScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: '[color=#FF9966]Заберите карточку[/color]'
+            markup: True
+        Button:
+            text: 'exit'
+            on_press: app.get_running_app().stop()
