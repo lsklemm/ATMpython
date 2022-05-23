@@ -90,30 +90,30 @@
         Button:
             text: '5'
             on_press: root.set_money(5)
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 
         Button:
             text: '10'
             on_press: root.set_money(10)
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 #            on_release: root.money_out()
 
         Button:
             text: '20'
             on_press: root.set_money(20)
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 #            on_release: root.money_out()
 
         Button:
             text: '50'
             on_press: root.set_money(50)
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 #            on_release: root.money_out()
 
         Button:
             text: '100'
             on_press: root.set_money(100)
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 #            on_release: root.money_out()
 
         Button:
@@ -156,7 +156,7 @@
         Button:
             text: 'продолжить'
             on_press: root.money_out()
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 
 
 
@@ -177,9 +177,9 @@
         Button:
             text: 'оппа сюда нада'
             on_press: root.money_in()
-            on_release: app.root.change_screen('check_screen')
+            on_release: app.root.change_screen('check_choice_screen')
 
-<CheckScreen>
+<CheckChoiceScreen>
     BoxLayout:
         orientation:'vertical'
 
@@ -188,11 +188,27 @@
             markup: True
         Button:
             text: 'хатишь'
-            on_press: app.root.change_screen('continue_screen')
+            on_press: app.root.change_screen('check_screen')
+            on_release: root.check()
 
         Button:
             text:'не хатишь'
             on_press: app.root.change_screen('continue_screen')
+
+
+
+<CheckScreen>
+    BoxLayout:
+        orientation:'vertical'
+
+        Label:
+            id: check_label
+            markup: True
+
+        Button:
+            text:'continue'
+            on_press: app.root.change_screen('continue_screen')
+
 
 <ContinueScreen>
     BoxLayout:

@@ -1,11 +1,12 @@
 import os
-from kivy.lang import Builder
+from datetime import datetime
 
+from kivy.lang import Builder
 from kivy.uix.textinput import TextInput
+from kivy.properties import ObjectProperty
 
 from kivymd.uix.screen import MDScreen
-from kivy.uix.screenmanager import Screen
-from kivy.properties import ObjectProperty
+
 
 
 
@@ -148,7 +149,28 @@ class ContinueScreen(MDScreen):
     pass
 
 class CheckScreen(MDScreen):
-    pass
+    """
+    Check screen
+    """
+    def __init__(self, controller, **kwargs):
+        super().__init__(**kwargs)
+        self.controller = controller
+
+    def show_check(self):
+        check = ''
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+        check += '[color=#FF9966]                     ЧЕК[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+        date = datetime.now()
+        check += '[color=#FF9966]Date: ' + date.strftime('%d-%m-%Y') + '[/color]\n'
+        check += '[color=#FF9966]Time: ' + date.strftime('%H:%M:%S') +'[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+
+        check += '[color=#FF9966]Operation: ' + self.controller.last_operation + '[/color]\n'
+        check += '[color=#FF9966]---------------------------------------------------[/color]\n'
+
+        self.ids.check_label.text = check
+        print(check)
 
 
 class BalanceScreen(MDScreen):
@@ -183,6 +205,8 @@ class PhoneInput(TextInput):
             elif len(new_text) == 17:
                 self.phone = new_text
 
+
+
 class PinInput(TextInput):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -196,6 +220,14 @@ class PinInput(TextInput):
             # elif len(new_text) == 4:
             #     self.pin = new_text
 
+
+class CheckChoiceScreen(MDScreen):
+    def __init__(self, check_screen, **kw):
+        super().__init__(**kw)
+        self.check_screen = check_screen
+
+    def check(self):
+        self.check_screen.show_check()
 
 class WarningScreen(MDScreen):
     pass
