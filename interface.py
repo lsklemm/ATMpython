@@ -144,18 +144,18 @@ class CheckScreen(MDScreen):
 
 
 class BalanceScreen(MDScreen):
+    """
+    Card balance screen
+    """
     def __init__(self, controller, **kwargs):
         super().__init__(**kwargs)
         self.controller = controller
-        self.card = 0
 
 
-        # self.ids.balance_byn_label.text = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
-        # self.ids.balance_usd_label.text = '[color=#FF9966]' + self.controller.get_card_balance_usd() + '[/color]'
-
-    def byn(self):
-        self.byn = '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
-        return '[color=#FF9966]' + self.controller.get_card_balance_byn() + '[/color]'
+    def set_balance(self, byn, usd):
+        print(byn, usd)
+        self.ids.balance_byn_label.text = '[color=#FF9966]' + byn + '[/color]'
+        self.ids.balance_usd_label.text = '[color=#FF9966]' + usd + '[/color]'
 
 
 

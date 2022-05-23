@@ -21,6 +21,7 @@ class MyApp(MDApp):
         self.controller = Controller()
         self.sm = Manager(transition=NoTransition())
         bs = BalanceScreen(name='balance_screen', controller=self.controller)
+        self.controller.balance_screen = bs
         self.sm.add_widget(WelcomeScreen(name='welcome_screen', controller = self.controller, balance=bs))
         self.sm.add_widget(bs)
         self.sm.add_widget(PinScreen(name='pin_screen', controller=self.controller))

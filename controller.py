@@ -19,7 +19,7 @@ class Controller:
         # self.main_screen = WelcomeScreen(controller=self)
         # self.money_operations = MoneyOperations()
         # self.current_screen = self.main_screen
-
+        self.balance_screen = ''
 
         self.single_t = Singleton()
         self.storage = Bankomat()
@@ -40,10 +40,10 @@ class Controller:
 
 
     def get_card_balance_byn(self):
-        return str(self.card.get_balance_byn)
+        return str(self.card.get_balance_byn())
 
     def get_card_balance_usd(self):
-        return str(self.card.get_balance_usd)
+        return str(self.card.get_balance_usd())
 
     def check_pin(self):
         if int(self.pin) == int(self.card.get_pin()):
@@ -70,9 +70,10 @@ class Controller:
         chosen = Chosen()
         if chosen.choose_card(number):
             self.card = Card(chosen.get_chosen())
-            return self.card
+
+            self.balance_screen.set_balance(self.get_card_balance_byn(), self.get_card_balance_usd())
             # card = Card(chosen.get_chosen())
-            # card.get_chosen()
+            # card.get_balance_byn()
 
 
     def money_out(self):
