@@ -213,6 +213,10 @@ class TelephonePaymentScreen(MDScreen):
     def __init__(self, controller, **kwargs):
         super().__init__(**kwargs)
         self.controller = controller
+    def phone_payment(self):
+        number = self.number.text
+        money = self.money.text
+        self.controller.telephone_payment(number,money)
 
 class PinInput(TextInput):
     def __init__(self, **kwargs):
@@ -247,9 +251,6 @@ class ExitScreen(MDScreen):
     pass
 
 
-    def phone_payment(self):
-        number = self.number.text
-        money = self.money.text
-        self.controller.telephone_payment(number,money)
+
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))

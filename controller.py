@@ -99,23 +99,23 @@ class Controller:
 
         print(self.card.get_balance_byn())
         telephone = Telephone()
-        if self.check_phone_number():
-            telephone.telephone_pay(self.card, int(money), self.phone_number, self.storage, self.single_t)
-            self.last_operation = 'Пополнение средств телефона'
+        #if self.check_phone_number():
+           # telephone.telephone_pay(self.card, int(money), self.phone_number, self.storage, self.single_t)
+            # self.last_operation = 'Пополнение средств телефона'
         #if self.check_phone_number():
         telephone.telephone_pay(self.card, int(money), number, self.storage, self.single_t)
         print(self.card.get_balance_byn())
 
-    def fromBUNtoUSD(self):
+    def fromBUNtoUSD(self,money):
         print(self.card.get_balance_byn())
         transaction = Currency_transactions()
-        transaction.fromBUNtoUSD(self.card, self.money, 1)
+        transaction.fromBUNtoUSD(self.card,money, 1)
         print(self.card.get_balance_byn())
 
-    def fromUSDtoBUN(self):
+    def fromUSDtoBUN(self,money):
         print(self.card.get_balance_byn())
         transaction = Currency_transactions()
-        transaction.fromUSDtoBUN(self.card, self.money, 1)
+        transaction.fromUSDtoBUN(self.card,money, 1)
         print(self.card.get_balance_byn())
 
     def change_pin(self):

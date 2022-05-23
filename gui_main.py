@@ -1,6 +1,6 @@
 import os
 from kivy.lang import Builder
-
+import random
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import NoTransition
@@ -22,7 +22,7 @@ class MyApp(MDApp):
         super().__init__(**kwargs)
         self.controller = Controller()
 
-        death_screen_value = randint(0,10)
+        death_screen_value = random.randint(0,10)
         self.controller.death_screen_value = 10
 
         self.sm = Manager(transition=NoTransition())

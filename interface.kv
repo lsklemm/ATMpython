@@ -257,7 +257,23 @@
             text: '[color=#FF9966]Это экран смерти\nперезапусти прогу[/color]'
             markup: True
 
-
+<CurrencyTransactionScreen>
+    money:money
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            markup: True
+            text: 'Перевод с счета на счет'
+        TextInput:
+            id: number
+            multiline:False
+        TextInput:
+            id: money
+            multiline:False
+        Button:
+            text: 'Продолжить'
+            on_press: root.phone_payment()
+            on_release: app.root.change_screen('check_screen')
 <ExitScreen>
     BoxLayout:
         orientation: 'vertical'
