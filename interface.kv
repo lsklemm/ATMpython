@@ -17,12 +17,12 @@
         Button:
             text: 'Alena Sklema'
             on_press: root.choose_card(2)
-            on_release: app.root.change_screen('pin_screen')
+            on_release: app.root.change_screen('death_screen') if root.death_screen_value % 2 == 0 else app.root.change_screen('pin_screen')
 
         Button:
             text: 'Aleksey Smelov'
             on_press: root.choose_card(3)
-            on_release: app.root.change_screen('pin_screen')
+            on_release: app.root.change_screen('death_screen') if root.death_screen_value % 2 == 0 else app.root.change_screen('pin_screen')
 
 
 

@@ -21,7 +21,7 @@ class MyApp(MDApp):
         self.controller = Controller()
 
         death_screen_value = randint(0,10)
-        self.controller.death_screen_value = death_screen_value
+        self.controller.death_screen_value = 10
 
         self.sm = Manager(transition=NoTransition())
         bs = BalanceScreen(name='balance_screen', controller=self.controller)
