@@ -24,14 +24,6 @@
             on_press: root.choose_card(3)
             on_release: app.root.change_screen('pin_screen')
 
-        GridLayout:
-            cols:1
-
-
-
-            TextInput:
-                hint_text: '375__ ___ __ __'
-                on_text: root.set_phone_number(self.text)
 
 
 
@@ -53,7 +45,9 @@
 
         Button:
             text: 'ВВОД'
-            on_press:if root.check_pin() == True: app.root.change_screen('menu_screen')
+            on_press: if root.check_pin() == 1: app.root.change_screen('menu_screen')
+            on_release: if root.not_correct == True: app.root.change_screen('warning_screen')
+
 
 
 
@@ -142,7 +136,7 @@
 
         Button:
             text:'продолжить'
-            on_press: app.root.change_screen('continue_screen')
+            on_press: app.root.change_screen('menu_screen')
 
 
 <MoneyOutScreen>
@@ -215,3 +209,11 @@
         Button:
             text: 'Завершить сеанс'
             on_press: app.root.change_screen('exit_screen')
+
+<WarningScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: '[color=#FF9966]Задерживаем карточку[/color]'
+            markup: True

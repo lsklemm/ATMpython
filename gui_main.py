@@ -7,7 +7,7 @@ from kivy.uix.screenmanager import NoTransition
 
 from controller import Controller
 
-from interface import WelcomeScreen, PinScreen, MenuScreen, MoneyOperations, MoneyOutScreen, MoneyOutChoiceScreen, ContinueScreen, CheckScreen, MoneyInScreen, BalanceScreen
+from interface import WelcomeScreen, PinScreen, MenuScreen, MoneyOperations, MoneyOutScreen, MoneyOutChoiceScreen, ContinueScreen, CheckScreen, MoneyInScreen, BalanceScreen, WarningScreen
 
 # kv = Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))
 
@@ -33,6 +33,7 @@ class MyApp(MDApp):
         self.sm.add_widget(CheckScreen(name='check_screen'))
         self.sm.add_widget(MoneyInScreen(name='money_in_screen', controller=self.controller))
         self.sm.add_widget(BalanceScreen(name='balance_screen', controller=self.controller))
+        self.sm.add_widget(WarningScreen(name='warning_screen'))
         self.sm.current = 'welcome_screen'
 
 

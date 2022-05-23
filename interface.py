@@ -54,6 +54,8 @@ class PinScreen(MDScreen):
         self.controller = controller
         self.pin_count = 0
 
+        self.not_correct = False
+
 
     def set_pin(self, pin):
         self.controller.set_pin(pin)
@@ -65,14 +67,19 @@ class PinScreen(MDScreen):
         if self.controller.check_pin():
             self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
             self.clean_input()
-            return True
+            return 1
         else:
-            self.ids.pin_label.text = '[color=#FF88FF]try one more time[/color]'
+            self.ids.pin_label.text = '[color=#FF88FF]Неверный пин-код!\nПовторите попытку[/color]'
             self.pin_count += 1
+
         if self.pin_count == 3:
             self.ids.pin_label.text = '[color=#FF88FF]bad[/color]'
             self.pin_count = 0
-        return False
+            self.not_correct = True
+            return 2
+
+
+
 
     def clean_input(self):
         self.ids.pin_input.text = ''
@@ -177,6 +184,8 @@ class PhoneInput(TextInput):
                 self.phone = new_text
 
 
+class WarningScreen(MDScreen):
+    pass
 
 
 Builder.load_file(os.path.join(os.path.dirname(__file__), "interface.kv"))
