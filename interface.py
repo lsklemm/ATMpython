@@ -17,6 +17,7 @@ class WelcomeScreen(MDScreen):
         self.controller = controller
         self.balance = balance
         self.pin_count = 0
+        self.death_screen_value = self.controller.death_screen_value
 
 
 
@@ -170,7 +171,7 @@ class CheckScreen(MDScreen):
         check += '[color=#FF9966]---------------------------------------------------[/color]\n'
 
         self.ids.check_label.text = check
-        print(check)
+
 
 
 class BalanceScreen(MDScreen):
@@ -228,6 +229,10 @@ class CheckChoiceScreen(MDScreen):
 
     def check(self):
         self.check_screen.show_check()
+
+
+class DeathScreen(MDScreen):
+    pass
 
 class WarningScreen(MDScreen):
     pass

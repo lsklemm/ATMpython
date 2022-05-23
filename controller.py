@@ -20,6 +20,7 @@ class Controller:
         # self.money_operations = MoneyOperations()
         # self.current_screen = self.main_screen
         self.balance_screen = ''
+        self.death_screen_value = 0
 
         self.single_t = Singleton()
         self.storage = Bankomat()
