@@ -4,6 +4,8 @@ import random
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import NoTransition
+from kivy.core.window import Window
+
 
 from controller import Controller
 

@@ -67,11 +67,11 @@ class PinScreen(MDScreen):
 
     def check_pin(self):
         if self.controller.check_pin():
-            self.ids.pin_label.text = '[color=#FF88FF]pin is correct[/color]'
+            self.ids.pin_label.text = '[color=#74B0D8]pin is correct[/color]'
             self.clean_input()
             return 1
         else:
-            self.ids.pin_label.text = '[color=#FF88FF]Неверный пин-код!\nПовторите попытку[/color]'
+            self.ids.pin_label.text = '[color=#FF0000]Неверный пин-код!\nПовторите попытку[/color]'
             self.pin_count += 1
 
         if self.pin_count == 3:
