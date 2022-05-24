@@ -201,10 +201,21 @@ class PhoneInput(TextInput):
     def insert_text(self, string, from_undo = False):
         new_text = self.text + string
         if new_text != '':
-            if len(new_text) < 17:
-                TextInput.insert_text(self, string, from_undo = from_undo)
-            elif len(new_text) == 17:
-                self.phone = new_text
+            if len(new_text) <= 17:
+                if len(new_text) == 4:
+                    string += ' '
+                    TextInput.insert_text(self, string, from_undo = from_undo)
+                elif len(new_text) == 7:
+                    string += ' '
+                    TextInput.insert_text(self, string, from_undo=from_undo)
+                elif len(new_text) == 11:
+                    string += ' '
+                    TextInput.insert_text(self, string, from_undo=from_undo)
+                elif len(new_text) == 14:
+                    string += ' '
+                    TextInput.insert_text(self, string, from_undo=from_undo)
+                else:
+                    TextInput.insert_text(self, string, from_undo=from_undo)
 
 
 class TelephonePaymentScreen(MDScreen):
@@ -216,6 +227,7 @@ class TelephonePaymentScreen(MDScreen):
     def phone_payment(self):
         number = self.number.text
         money = self.money.text
+
         self.controller.telephone_payment(number,money)
 
 class PinInput(TextInput):
@@ -259,6 +271,7 @@ class BYNtoUSD(MDScreen):
     def from_byn_to_usd(self):
         money=self.money.text
         self.controller.fromBUNtoUSD(money)
+
 class USDtoBYN(MDScreen):
     money = ObjectProperty()
     def __init__(self,controller, **kw):
