@@ -521,7 +521,7 @@ class Telephone(GiveMoney):
 class Currency_transactions:
     def fromBUNtoUSD(self,card,value:float, gui):
         card.copy_data()
-        if value * 3.31 > float(card.get_balance_byn()) or value < 0:
+        if float(value) * 3.31 > float(card.get_balance_byn()) or float(value) < 0:
             print('ERROR')
         else:
             new_value = float(card.get_balance_byn())-(value*3.31)

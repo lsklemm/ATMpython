@@ -45,6 +45,8 @@ class MyApp(MDApp):
         self.sm.add_widget(ExitScreen(name='exit_screen'))
         self.sm.add_widget(DeathScreen(name='death_screen'))
         self.sm.add_widget(TelephonePaymentScreen(name='telephone_payment', controller=self.controller))
+        self.sm.add_widget(BYNtoUSD(name='byn_to_usd', controller=self.controller))
+        self.sm.add_widget(USDtoBYN(name='usd_to_byn', controller=self.controller))
         self.sm.current = 'welcome_screen'
 
 

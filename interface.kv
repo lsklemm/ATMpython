@@ -82,11 +82,12 @@
             text: 'telephone payment'
             on_press: app.root.change_screen('telephone_payment')
         Button:
-            text: 'transaction to USD'
-            on_press: app.root.change_screen('BYNtoUSD')
+            text: 'BYNtoUSD'
+            on_press: app.root.change_screen('byn_to_usd')
         Button:
-            text: 'transaction to BYN'
-            on_press: app.root.change_screen('USDtoBYN')
+            text: 'USDtoBYN'
+            on_press: app.root.change_screen('usd_to_byn')
+
 
 <MoneyOutChoiceScreen>
     BoxLayout:
@@ -257,22 +258,27 @@
             text: '[color=#FF9966]Это экран смерти\nперезапусти прогу[/color]'
             markup: True
 
-<CurrencyTransactionScreen>
+<BYNtoUSD>
     money:money
     BoxLayout:
         orientation: 'vertical'
-        Label:
-            markup: True
-            text: 'Перевод с счета на счет'
-        TextInput:
-            id: number
-            multiline:False
         TextInput:
             id: money
             multiline:False
         Button:
             text: 'Продолжить'
-            on_press: root.phone_payment()
+            on_press: root.from_byn_to_usd()
+            on_release: app.root.change_screen('check_screen')
+<USDtoBYN>
+    money:money
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: money
+            multiline:False
+        Button:
+            text: 'Продолжить'
+            on_press: root.from_usd_to_byn()
             on_release: app.root.change_screen('check_screen')
 <ExitScreen>
     BoxLayout:

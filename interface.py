@@ -250,6 +250,23 @@ class WarningScreen(MDScreen):
 class ExitScreen(MDScreen):
     pass
 
+class BYNtoUSD(MDScreen):
+    money = ObjectProperty()
+    def __init__(self,controller, **kw):
+        super().__init__(**kw)
+        self.controller = controller
+
+    def from_byn_to_usd(self):
+        money=self.money.text
+        self.controller.fromBUNtoUSD(money)
+class USDtoBYN(MDScreen):
+    money = ObjectProperty()
+    def __init__(self,controller, **kw):
+        super().__init__(**kw)
+        self.controller = controller
+    def from_usd_to_byn(self):
+        money = self.money.text
+        self.controller.fromUSDtoBUN(money)
 
 
 
